@@ -34,6 +34,7 @@ Lightweight routines to communicate with modern VESC controllers using their UAR
 Convert all POD herein to markdown thusly:-
 
 perl -MPod::Markdown -e 'Pod::Markdown->new->filter(@ARGV)' libraries/VescUartLite/VescUartLite.h > libraries/VescUartLite/README.md
+perl -MPod::Markdown -e 'Pod::Markdown->new->filter(@ARGV)' VescUartLite.h > README.md
 
 */
 
@@ -229,7 +230,7 @@ class VescUartLite {
    unsigned char fault_code=0;		// V.15 - see fault_to_string() function
    double pid_pos_now=0;		// M.16 degrees?, scale=1000000
    unsigned char controller_id=0;	// V.17 canbus byte
-   float ntc_temp_mos1=0;	// V.17, scale=10
+   float ntc_temp_mos1=0;		// V.17, scale=10
    float ntc_temp_mos2=0;
    float ntc_temp_mos3=0;
 ```
@@ -252,7 +253,7 @@ class VescUartLite {
 /*
 =pod
 
-  unsigned short crc16(data,length) // This is the VESC CRC16 algorithm - it's internal, but public in case others want to use this
+  unsigned short crc16(data,length);	// This is the VESC CRC16 algorithm - it's internal, but public in case others want to use this
 =cut
 */
    unsigned short crc16(const unsigned char* data_p, unsigned char length){
@@ -271,7 +272,7 @@ class VescUartLite {
 /*
 =pod
 
-   void vescSend(data,length); Sends a command (adds padding and CRC) over UART to the VESC - this is internal, but public in case others want to use this
+   void vescSend(data,length);		// Sends a command (adds padding and CRC) over UART to the VESC - this is internal, but public in case others want to use this
 =cut
 */
    void vescSend(char *data,unsigned char length) { // Puts the command into a CRC-padded packet, and sends it
@@ -288,7 +289,7 @@ class VescUartLite {
 /*
 =pod
 
-   void commAlive(canbusid); // Call this regularly to tell VESC you're still alive.
+   void commAlive(canbusid);		// Call this regularly to tell VESC you're still alive.
 =cut
 */
    void commAlive(unsigned char canbusid) {	// Tell it we are still here
@@ -299,7 +300,7 @@ class VescUartLite {
 /*
 =pod
 
-   void readMotor(canbusid);	// Request VESC data relating to motors be sent back to us
+   void readMotor(canbusid);		// Request VESC data relating to motors be sent back to us
 =cut
 */
    // NB: Vesc buffer bug: cannot get all values at once - buffers are too small.
@@ -547,7 +548,7 @@ class VescUartLite {
 /*
 =pod
 
-  void serialEvent();	// Including this header will include this interrupt function (which assembles VESC packets) in your code.
+  void serialEvent();		// Including this header will include this interrupt function (which assembles VESC packets) in your code.
   // SerialEvent occurs whenever a new data comes in the hardware serial RX. Multiple bytes of data may be available.
 ```
 =cut

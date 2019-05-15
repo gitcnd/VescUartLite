@@ -57,7 +57,7 @@ Lightweight routines to communicate with modern VESC controllers using their UAR
     unsigned char fault_code=0;          // V.15 - see fault_to_string() function
     double pid_pos_now=0;                // M.16 degrees?, scale=1000000
     unsigned char controller_id=0;       // V.17 canbus byte
-    float ntc_temp_mos1=0;       // V.17, scale=10
+    float ntc_temp_mos1=0;               // V.17, scale=10
     float ntc_temp_mos2=0;
     float ntc_temp_mos3=0;
  ```
@@ -69,13 +69,13 @@ Lightweight routines to communicate with modern VESC controllers using their UAR
 
     void begin(BAUD,CallBackFunction);    // Sets baud rate, and lets you tell VescUartLite which of your functions you want to call when data is ready
 
-    unsigned short crc16(data,length) // This is the VESC CRC16 algorithm - it's internal, but public in case others want to use this
+    unsigned short crc16(data,length);    // This is the VESC CRC16 algorithm - it's internal, but public in case others want to use this
 
-    void vescSend(data,length); Sends a command (adds padding and CRC) over UART to the VESC - this is internal, but public in case others want to use this
+    void vescSend(data,length);          // Sends a command (adds padding and CRC) over UART to the VESC - this is internal, but public in case others want to use this
 
-    void commAlive(canbusid); // Call this regularly to tell VESC you're still alive.
+    void commAlive(canbusid);            // Call this regularly to tell VESC you're still alive.
 
-    void readMotor(canbusid);    // Request VESC data relating to motors be sent back to us
+    void readMotor(canbusid);            // Request VESC data relating to motors be sent back to us
 
     void readVesc(canbusid);             // Request non-motor VESC data be sent back to us
     // NOTE: The VESC Chip's O/S has a bug; serial buffers >64 bytes get truncated, so reading all VESC data now requires you make 2 calls, to get <64 bytes each time
@@ -86,7 +86,7 @@ Lightweight routines to communicate with modern VESC controllers using their UAR
 
     const __FlashStringHelper *fault_to_string(fault_code);       // Convert VESC (and our) fault numbers to words.
 
-    void serialEvent();   // Including this header will include this interrupt function (which assembles VESC packets) in your code.
+    void serialEvent();           // Including this header will include this interrupt function (which assembles VESC packets) in your code.
     // SerialEvent occurs whenever a new data comes in the hardware serial RX. Multiple bytes of data may be available.
   ```
 
