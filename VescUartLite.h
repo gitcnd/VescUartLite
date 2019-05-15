@@ -549,6 +549,7 @@ class VescUartLite {
 
   void serialEvent();	// Including this header will include this interrupt function (which assembles VESC packets) in your code.
   // SerialEvent occurs whenever a new data comes in the hardware serial RX. Multiple bytes of data may be available.
+```
 =cut
 */
 void serialEvent() {
@@ -651,13 +652,11 @@ Serial.println("time fault");
 =pod
 
 
- ```
 
 =head2 HOW TO INSTALL
 
 =head3 (Method 1)
 
-=over
 
 =for markdown
 1. Open a terminal (commandline, bash shell, whatever)
@@ -675,11 +674,9 @@ Serial.println("time fault");
 5. Choose File => Examples => VescUartLite => VescUartLite_example
 6. Hit the "build" button and enjoy!
 
-=back
 
 =head3 (Method 2) - see https://www.arduino.cc/en/Guide/Libraries
 
-=over
 
 =for markdown
 1. Download the ZIP of this repo: https://github.com/gitcnd/VescUartLite/archive/master.zip
@@ -687,7 +684,6 @@ Serial.println("time fault");
 3. Choose File => Examples => VescUartLite => hello
 4. Hit the "build" button and enjoy!
 
-=back
 
 =cut
 
